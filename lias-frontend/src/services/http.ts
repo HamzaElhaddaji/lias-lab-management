@@ -16,7 +16,7 @@ export async function request(path: string, method = 'GET', data?: unknown): Pro
   }
   if (response.status === 204) return null;
   if (!response.headers.get('content-type')?.includes('application/json')) {
-    throw new Error('The backend is not connected yet. Configure VITE_API_URL for this deployment.');
+    throw new Error('The laboratory service is currently unavailable. Please try again later.');
   }
   return response.json();
 }
