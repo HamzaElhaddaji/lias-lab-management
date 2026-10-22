@@ -14,7 +14,11 @@ export async function request(path: string, method = 'GET', data?: unknown): Pro
     if (response.status === 401 && !path.startsWith('/api/auth/')) useAuthStore.getState().logout();
     throw new Error(body.message || (response.status === 403 ? 'Your role does not permit this action.' : `Request failed (${response.status}).`));
   }
-  return response.status === 204 ? null : response.json().catch(() => null);
+  if (response.status === 204) return null;
+  if (!response.headers.get('content-type')?.includes('application/json')) {
+    throw new Error('The backend is not connected yet. Configure VITE_API_URL for this deployment.');
+  }
+  return response.json();
 }
 export async function download(path: string, name: string) {
   const response = await fetch(base + path, { headers: { Authorization: `Bearer ${localStorage.getItem('auth_token') || ''}` } });

@@ -1,0 +1,43 @@
+# Free demonstration deployment: database expires after 30 days; uploads are ephemeral.
+services:
+  - type: web
+    name: lias-lab-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: lias-backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_HOST
+        fromDatabase: {name: lias-lab-db, property: host}
+      - key: DB_PORT
+        fromDatabase: {name: lias-lab-db, property: port}
+      - key: DB_NAME
+        fromDatabase: {name: lias-lab-db, property: database}
+      - key: DB_USERNAME
+        fromDatabase: {name: lias-lab-db, property: user}
+      - key: DB_PASSWORD
+        fromDatabase: {name: lias-lab-db, property: password}
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: SEED_PASSWORD
+        generateValue: true
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: SEED_SAMPLE_DATA
+        value: "true"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: MAIL_ENABLED
+        value: "false"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:MaxRAMPercentage=65 -XX:+UseSerialGC"
+databases:
+  - name: lias-lab-db
+    plan: free
+    region: frankfurt
+    databaseName: lias_db
+    user: lias_user
+    ipAllowList: []
