@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.control { display: block; width: 100%; border: 1px solid #cbd5e1; border-radius: .5rem; background: white; padding: .6rem .75rem; font-size: .875rem; color: #0f172a; }
+.control:focus { outline: 2px solid #10b981; outline-offset: 1px; }
+
+@layer base {
+  :root {
+    --background: 70 18% 96%;
+    --foreground: 222 26% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 26% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 26% 13%;
+    --muted: 75 16% 91%;
+    --muted-foreground: 220 10% 42%;
+    --accent: 158 42% 90%;
+    --accent-foreground: 160 70% 18%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 80 15% 83%;
+    --input: 80 15% 83%;
+    --primary: 158 64% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 44 96% 89%;
+    --secondary-foreground: 35 60% 20%;
+    --ring: 158 64% 30%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.6%;
+    --foreground: 0 0% 98.2%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98.2%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98.2%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 98.2%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 9%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --primary: 0 0% 98.2%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98.2%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}

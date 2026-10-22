@@ -1,0 +1,14 @@
+**/node_modules/
+**/target/
+**/dist/
+**/uploads/
+**/.env
+**/.env.local
+**/.env.*.local
+**/.vercel/
+**/*.tsbuildinfo
+.idea/
+*.log
+complete_backend.py
+add_modules.py
+fix_integration.py
